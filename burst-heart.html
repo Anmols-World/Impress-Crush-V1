@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>You</title>
+    <style>
+        body {
+            overflow: hidden;
+            perspective: 1000px;
+            -webkit-perspective: 1000px;
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #fff0f3; 
+        }
+
+        div.box-bottom {
+            background: #db3a65;
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 30%;
+            z-index: 10;
+        }
+
+        .block-center {
+            width: 20px; height: 20px;
+            position: absolute;
+            left: 50%;
+            animation: hol 3s linear infinite;
+            -webkit-animation: hol 3s linear infinite;
+        }
+      
+        .block-center div {
+            position: absolute;
+            width: 60px; height: 72px;
+            border-radius: 80% 60% 0 0;
+            transform: rotate(-60deg);
+            -webkit-transform: rotate(-60deg);
+        }
+      
+        .block-center div:before {
+            content: ""; position: absolute;
+            height: 100%; width: 100%;
+            background: inherit;
+            transform: rotate(118deg);
+            -webkit-transform: rotate(118deg);
+            border-radius: 50% 80% 0 0;
+            left: 19%; top: 30%;
+        }
+           
+        .h {
+            position: absolute; left: 50%;
+            width: 120px; height: 120px;
+            margin-left: -60px; margin-top: -60px;
+            z-index: 1;
+            animation: h 3s ease infinite alternate;
+            -webkit-animation: h 3s ease infinite alternate;
+        }
+        .h div:first-child {
+            width: 80%; height: 100%;
+            transform: rotate(-47deg); -webkit-transform: rotate(-47deg);
+            border-radius: 50px 38px 20px 0;
+            position: absolute; background: #db3a65;
+            box-shadow: 10px 0 47px black inset;
+        }
+        .h div:last-child {
+            width: 80%; height: 100%;
+            background: #db3a65;
+            transform: rotate(48deg); -webkit-transform: rotate(48deg);
+            border-radius: 80px 118px 0 163px;
+            position: absolute; top: 0; right: 0;
+            box-shadow: -10px 0 47px black inset;
+        }
+      
+        /* The Burst Animation Fix for Mobile */
+        @-webkit-keyframes hol {
+            0% { top: 0%; overflow: hidden; -webkit-transform: rotateX(0deg); }
+            50% { top: -300px; left: 50%; height: 0; width: 0; -webkit-transform: translateX(-50%); }
+            90% { opacity: 1; }
+            100% { top: -500px; width: 1000px; height: 500px; -webkit-transform: translateX(-50%); opacity: 0; }
+        }
+        @keyframes hol {
+            0% { top: 0%; overflow: hidden; transform: rotateX(0deg); }
+            50% { top: -300px; left: 50%; height: 0; width: 0; transform: translateX(-50%); }
+            90% { opacity: 1; }
+            100% { top: -500px; width: 1000px; height: 500px; transform: translateX(-50%); opacity: 0; }
+        }
+
+        @-webkit-keyframes h {
+            0% { -webkit-transform: scale(.5); }
+            50% { -webkit-transform: scale(1.5); }
+            100% { -webkit-transform: scale(.5); }
+        }
+        @keyframes h {
+            0% { transform: scale(.5); }
+            50% { transform: scale(1.5); }
+            100% { transform: scale(.5); }
+        }
+
+        .heart {
+            position: absolute;
+            width: 100px; height: 90px;
+            top: 60%; /* Adjusted for mobile view spacing */
+            left: 50%;
+            margin-top: -45px; margin-left: -50px;
+            z-index: 5;
+        }
+        .heart:before, .heart:after {
+            position: absolute; content: "";
+            left: 50px; top: 0;
+            width: 50px; height: 80px;
+            background: #f1c5cf;
+            border-radius: 50px 50px 0 0;
+            transform: rotate(-45deg); -webkit-transform: rotate(-45deg);
+            transform-origin: 0 100%; -webkit-transform-origin: 0 100%;
+        }
+        .heart:after {
+            left: 0; 
+            transform: rotate(45deg); -webkit-transform: rotate(45deg);
+            transform-origin: 100% 100%; -webkit-transform-origin: 100% 100%;
+        }
+        .love1 { 
+            animation: heart-animation 1s linear .4s infinite;
+            -webkit-animation: heart-animation 1s linear .4s infinite;
+        }
+        .love2 { 
+            animation: beating .5s linear infinite alternate;
+            -webkit-animation: beating .5s linear infinite alternate;
+        }
+        .love1:after, .love1:before { background-color: #ff7693; }
+
+        @-webkit-keyframes beating {
+            0% { -webkit-transform: scale(1.5); }
+            100% { -webkit-transform: scale(1); }
+        }
+        @keyframes beating {
+            0% { transform: scale(1.5); }
+            100% { transform: scale(1); }
+        }
+
+        @-webkit-keyframes heart-animation {
+            46% { -webkit-transform: scale(1); }
+            50% { -webkit-transform: scale(1.3); }
+            52% { -webkit-transform: scale(1.5); }
+            55% { -webkit-transform: scale(3); }
+            100% { opacity: 0; -webkit-transform: scale(50); }
+        }
+        @keyframes heart-animation {
+            46% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            52% { transform: scale(1.5); }
+            55% { transform: scale(3); }
+            100% { opacity: 0; transform: scale(50); }
+        }
+
+        /* Responsive Photo Fix */
+        .couple-img {
+            height: 250px; width: 250px;
+            position: absolute; top: 25%; left: 50%;
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            z-index: 2; border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <img src='coupleai.PNG' class="img-thumbnail couple-img" alt="Couple">
+    
+    <div class="heart love1"></div>
+    <div class="heart love2"></div>
+    
+    <div class="box-bottom">
+        <div class="h">
+            <div id="h"></div>
+            <div></div>
+        </div>
+        <div class="hol" id="hol">
+            <div id="center" class="block-center"> </div>
+        </div>
+    </div>
+             
+    <div style="position: fixed; bottom: 10px; width: 100%; text-align: center; font-size: 14px; color: #fff; font-family: sans-serif; z-index: 9999; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">
+      Created by <a href="https://instagram.com/anmol.zsh" target="_blank" style="color: #ffebf0; text-decoration: underline; font-weight: bold;">Anmol Jaisinghani</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
+    <script>
+        var myhol = document.getElementById("hol");
+
+        function randVal(myVal, other){
+            if(Array.isArray(myVal)){
+                var ranInArray = Math.floor(Math.random() * myVal.length);
+                return myVal[ranInArray];
+            }else{
+                var randnum = Math.floor(Math.random() * myVal);
+                return randnum;
+            }
+        }
+
+        var color =['#cc3673','#273522','#7c001b','#3a0003','#dbd000','#824275','#eba2a3','#d1003b'],
+            sizebox = [10,15,20,5,12,30,22,34,16],
+            myh = document.getElementById("hol"),
+            lV = document.getElementById("h");
+
+        for(i = 0 ; i < 100 ; i++){
+            for(x = 0 ; x < myh.children.length ; x++){
+                var mypub = document.createElement("div");
+                var size = randVal(sizebox) + "px";
+                mypub.style.backgroundColor = randVal(color) ; 
+                mypub.style.borderColor =  randVal(color) ;
+                mypub.style.width = size  ;
+                mypub.style.height = size  ;
+                mypub.style.left = randVal(100) + "%";
+                mypub.style.top = randVal(100) + "%";
+                myh.children[x].appendChild(mypub);
+            } 
+        }
+        
+        var ct = document.getElementById("center");
+        setInterval(function(){
+            lV.style.backgroundColor = randVal(color) ;
+            lV.nextElementSibling.style.backgroundColor = randVal(color) ;
+            
+            for(i = 0 ; i < ct.children.length ; i++){
+                ct.children[i].style.backgroundColor = randVal(color);
+            }
+        },1000);
+    </script>
+    
+    <script src="logger.js"></script>
+</body>
+</html>
